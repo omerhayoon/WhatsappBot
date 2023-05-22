@@ -71,14 +71,8 @@ public class Program extends JPanel {
         log.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //openChrome();// פתיחת דפדפן
-//                resultLogin = openChrome();
                 openChrome();
                 addSuccessLogin();
-//                if(resultLogin){
-//                    addSuccessLogin();
-//                openChrome();// פתיחת דפדפן
-//                resultLogin=true;
             }
         });
 
@@ -145,35 +139,21 @@ public class Program extends JPanel {
     }
 
     public void openChrome() {
-        boolean success = false;
         System.setProperty("webdriver.openqa.driver",
                 "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
         chromeDriver = new ChromeDriver();// יתירת משתנה כרום
         chromeDriver.get("https://web.whatsapp.com/");// פותח קישור
         chromeDriver.manage().window().maximize();// לפתוח בחלון מלא
-//        try {
-//            Thread.sleep(20000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
         WebElement searchBox = null;
         while (true) {
             try {
                 searchBox = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));
                 if (searchBox != null) {
-//                    success = true;
                     break;
                 }
             } catch (Exception e) {
             }
         }
-//        if (searchBox != null) {
-//            System.out.println("success");
-//            success = true;
-//        } else {
-//            System.out.println("not success");
-//        }
-//        return success;
     }
 
     public void paintComponent(Graphics graphics) {
