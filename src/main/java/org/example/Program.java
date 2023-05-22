@@ -22,7 +22,7 @@ public class Program extends JPanel {
     private ChromeDriver chromeDriver;
 
     public Program() {
-        addByLine();
+        // addByLine();
         this.add(loginProcess());
         this.add(addText());
         repaint();
