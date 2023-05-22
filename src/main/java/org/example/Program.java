@@ -20,13 +20,14 @@ public class Program extends JPanel {
     private boolean resultLogin;
     private JLabel sucsess;
     private ChromeDriver chromeDriver;
+    private Image image;
 
     public Program() {
         addByLine();
         this.add(loginProcess());
         this.add(addText());
         repaint();
-//        addBackgroundPicture();
+        addBackgroundPicture();
         //this.add(addText());
         // this.panelText.setVisible(resultLogin);
         // this.panelText.requestFocus();
@@ -40,7 +41,6 @@ public class Program extends JPanel {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        repaint();
     }
 
     public void addByLine() {
@@ -54,11 +54,12 @@ public class Program extends JPanel {
 
     public void addSucsessLogin(Boolean resultLogin) {
         System.out.println("addSuccessLogin method is stating");
+        sucsess = new JLabel();
         if (resultLogin) {
-            sucsess = new JLabel("Login Sucseesed!");
+            sucsess.setText("Login Sucseesed!");
             sucsess.setForeground(Color.GREEN);
         } else {
-            sucsess = new JLabel("Login failed!");
+            sucsess.setText("Login failed!");
             sucsess.setForeground(Color.RED);
         }
         sucsess.setBounds(3, 170, 800, 40);
@@ -177,7 +178,7 @@ public class Program extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
     }
 }
 
