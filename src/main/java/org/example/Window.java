@@ -1,16 +1,17 @@
 package org.example;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Window extends JFrame {//
 
     private static final int WIDTH = 800;
-    private static final int HEIGHT = 500;
+    private static final int HEIGHT = 300;
     private Program program;
 
 
     public Window() {
-        program=new Program();
+        program = new Program();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(WIDTH, HEIGHT);

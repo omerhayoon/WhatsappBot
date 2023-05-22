@@ -9,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -24,19 +22,16 @@ public class Program extends JPanel {
     private ChromeDriver chromeDriver;
 
     public Program() {
-//        addBackgroundPicture();
         addByLine();
         this.add(loginProcess());
+        this.add(addText());
         repaint();
+//        addBackgroundPicture();
         //this.add(addText());
         // this.panelText.setVisible(resultLogin);
         // this.panelText.requestFocus();
         // if(resultLogin) {
         //  loginProcess().setVisible(false);
-        this.add(addText());
-
-        // }
-
     }
 
     public void addBackgroundPicture() {
@@ -86,7 +81,6 @@ public class Program extends JPanel {
                 addSucsessLogin(resultLogin);
 //                if(resultLogin){
 //                    addSucsessLogin();
-                //}
 //                openChrome();// פתיחת דפדפן
 //                resultLogin=true;
             }
@@ -155,7 +149,7 @@ public class Program extends JPanel {
     }
 
     public boolean openChrome() {
-        boolean sucsess = false;
+        boolean success = false;
         System.setProperty("webdriver.openqa.driver",
                 "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
         chromeDriver = new ChromeDriver();// יתירת משתנה כרום
@@ -174,11 +168,11 @@ public class Program extends JPanel {
         }
         if (searchBox != null) {
             System.out.println("success");
-            sucsess = true;
+            success = true;
         } else {
             System.out.println("not success");
         }
-        return sucsess;
+        return success;
     }
 
     public void paintComponent(Graphics graphics) {
