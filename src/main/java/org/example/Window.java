@@ -21,7 +21,7 @@ public class Window extends JFrame {//
         this.setTitle("WhatsappBOT");
         this.add(program);
         this.program.setBounds(0, 0, WIDTH, HEIGHT);
-        program.requestFocus();
+//        program.requestFocus();
     }
 
 }

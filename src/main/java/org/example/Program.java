@@ -17,15 +17,28 @@ public class Program extends JPanel {
     private Image background;
     private JPanel panelText;
     private JPanel panelLogin;
+    private JButton log;
     private boolean resultLogin;
     private JLabel sucsess;
     private ChromeDriver chromeDriver;
 
     public Program() {
         // addByLine();
-        this.add(loginProcess());
+        this.setLayout(null);
         this.add(addText());
+        this.panelText.setVisible(false);
+        this.log = new JButton("Log on WhatApp");
+        this.log.setBounds(0,0,200,50);
+        this.log.setVisible(true);
+        this.add(log);
+        loginProcess();
+//        this.add(loginProcess());
+        if(sucsess!=null){
+            this.panelText.setVisible(true);
+            this.panelText.setBounds(0,150,250,250);
+        }
         repaint();
+
         //addBackgroundPicture();
         //this.add(addText());
         // this.panelText.setVisible(resultLogin);
@@ -63,25 +76,24 @@ public class Program extends JPanel {
         repaint();
     }
 
-    public JPanel loginProcess() {
-        panelLogin = new JPanel();
-        panelLogin.setLayout(new GridLayout(1, 1, 10, 10));
-        JButton log = new JButton("Log on WhatApp ");
-        panelLogin.add(log);
-        log.addActionListener(new ActionListener() {
+    public void loginProcess() {
+//        panelLogin = new JPanel();
+        //panelLogin.setLayout(new GridLayout(1, 1, 10, 10));
+//        this.log = new JButton("Log on WhatApp");
+//        this.log.setBounds(0,0,100,50);
+////        log.add(log);
+//        this.log.setVisible(true);
+        this.log.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openChrome();
                 addSuccessLogin();
             }
         });
-
-        return panelLogin;
     }
 
     public JPanel addText() {
         panelText = new JPanel();
-        panelText.setVisible(true);
         panelText.setLayout(new GridLayout(3, 2, 10, 10));
         //panelText.setBounds(20, 50, 200, 200);
         JLabel message = new JLabel("Message: ");
