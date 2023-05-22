@@ -26,7 +26,7 @@ public class Program extends JPanel {
         this.add(loginProcess());
         this.add(addText());
         repaint();
-        addBackgroundPicture();
+        //addBackgroundPicture();
         //this.add(addText());
         // this.panelText.setVisible(resultLogin);
         // this.panelText.requestFocus();
@@ -36,7 +36,7 @@ public class Program extends JPanel {
 
     public void addBackgroundPicture() {
         try {
-            background = ImageIO.read(Objects.requireNonNull(getClass().getResource("ProgramBackground.jpg")));
+            background = ImageIO.read(Objects.requireNonNull(getClass().getResource("wahtsapp2.jpg")));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -54,13 +54,8 @@ public class Program extends JPanel {
     public void addSucsessLogin(Boolean resultLogin) {
         System.out.println("addSuccessLogin method is stating");
         sucsess = new JLabel();
-        if (resultLogin) {
-            sucsess.setText("Login Sucseesed!");
-            sucsess.setForeground(Color.GREEN);
-        } else {
-            sucsess.setText("Login failed!");
-            sucsess.setForeground(Color.RED);
-        }
+        sucsess.setText("Login Successed!");
+        sucsess.setForeground(Color.GREEN);
         sucsess.setBounds(3, 170, 800, 40);
         sucsess.setFont(new Font("Arial", Font.BOLD, 14));
         sucsess.setVisible(true);
@@ -148,7 +143,7 @@ public class Program extends JPanel {
         return result;
     }
 
-    public boolean openChrome() {
+    public void openChrome() {
         boolean success = false;
         System.setProperty("webdriver.openqa.driver",
                 "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום

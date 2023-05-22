@@ -6,7 +6,7 @@ import java.awt.*;
 public class Window extends JFrame {//
 
     private static final int WIDTH = 800;
-    private static final int HEIGHT = 300;
+    private static final int HEIGHT = 600;
     private Program program;
 
 
