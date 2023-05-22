@@ -51,7 +51,7 @@ public class Program extends JPanel {
         this.add(by);
     }
 
-    public void addSucsessLogin(Boolean resultLogin) {
+    public void addSuccessLogin() {
         System.out.println("addSuccessLogin method is stating");
         sucsess = new JLabel();
         sucsess.setText("Login Successed!");
@@ -72,10 +72,11 @@ public class Program extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //openChrome();// פתיחת דפדפן
-                resultLogin = openChrome();
-                addSucsessLogin(resultLogin);
+//                resultLogin = openChrome();
+                openChrome();
+                addSuccessLogin();
 //                if(resultLogin){
-//                    addSucsessLogin();
+//                    addSuccessLogin();
 //                openChrome();// פתיחת דפדפן
 //                resultLogin=true;
             }
@@ -150,24 +151,29 @@ public class Program extends JPanel {
         chromeDriver = new ChromeDriver();// יתירת משתנה כרום
         chromeDriver.get("https://web.whatsapp.com/");// פותח קישור
         chromeDriver.manage().window().maximize();// לפתוח בחלון מלא
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(20000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         WebElement searchBox = null;
-        try {
-            searchBox = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                searchBox = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));
+                if (searchBox != null) {
+//                    success = true;
+                    break;
+                }
+            } catch (Exception e) {
+            }
         }
-        if (searchBox != null) {
-            System.out.println("success");
-            success = true;
-        } else {
-            System.out.println("not success");
-        }
-        return success;
+//        if (searchBox != null) {
+//            System.out.println("success");
+//            success = true;
+//        } else {
+//            System.out.println("not success");
+//        }
+//        return success;
     }
 
     public void paintComponent(Graphics graphics) {
