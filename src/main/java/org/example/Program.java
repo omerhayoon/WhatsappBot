@@ -20,7 +20,6 @@ public class Program extends JPanel {
     private boolean resultLogin;
     private JLabel sucsess;
     private ChromeDriver chromeDriver;
-    private Image image;
 
     public Program() {
         addByLine();
@@ -178,7 +177,7 @@ public class Program extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+        graphics.drawImage(background, 0, 0, getWidth(), getHeight(), this);
     }
 }
 
