@@ -21,11 +21,14 @@ public class Program extends JPanel {
     private boolean resultLogin;
     private JLabel sucsess;
     private ChromeDriver chromeDriver;
+    private Window window;
 
-    public Program() {
+    public Program(Window window) {
         // addByLine();
+        this.window=window;
         this.setLayout(null);
-        this.add(addText());
+        //this.add(addText());
+        if(panelText!=null)
         this.panelText.setVisible(false);
         this.log = new JButton("Log on WhatApp");
         this.log.setBounds(0,0,200,50);
@@ -73,6 +76,8 @@ public class Program extends JPanel {
         sucsess.setFont(new Font("Arial", Font.BOLD, 14));
         sucsess.setVisible(true);
         this.add(sucsess);
+        this.window.creatTextBox();
+
         repaint();
     }
 
@@ -92,46 +97,47 @@ public class Program extends JPanel {
         });
     }
 
-    public JPanel addText() {
-        panelText = new JPanel();
-        panelText.setLayout(new GridLayout(3, 2, 10, 10));
-        //panelText.setBounds(20, 50, 200, 200);
-        JLabel message = new JLabel("Message: ");
-        JTextField messageTF = new JTextField();
-        JLabel phoneNumber = new JLabel("Phone Number: ");
-        JTextField phoneNumberTF = new JTextField();
-        JButton print = new JButton("Print ");
-        panelText.add(message);
-        panelText.add(messageTF);
-        panelText.add(phoneNumber);
-        panelText.add(phoneNumberTF);
-        panelText.add(print);
-        panelText.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Inserting content"),
-                BorderFactory.createEmptyBorder(10, 5, 2, 5)));
-//        panelText.setVisible(resultLogin);
-        print.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                if (resultLogin) {
-                    //print.setText("Print");
-                    System.out.println("message : " + messageTF.getText());
-                    do {
-                        System.out.println("phoneNumber : " + phoneNumberTF.getText());
-                        if (!validPhone(phoneNumberTF.getText())) {
-                            JOptionPane.showMessageDialog(null, "The number you entered is incorrect ", "Wrong Phone",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                        }
-                    } while (!validPhone(phoneNumberTF.getText()));
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Need to log in ", "Wrong ",
-                            JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        });
-
-        return panelText;
-    }
+//    public JPanel addText() {
+//
+//        panelText = new JPanel();
+//        panelText.setLayout(new GridLayout(3, 2, 10, 10));
+//        //panelText.setBounds(20, 50, 200, 200);
+//        JLabel message = new JLabel("Message: ");
+//        JTextField messageTF = new JTextField();
+//        JLabel phoneNumber = new JLabel("Phone Number: ");
+//        JTextField phoneNumberTF = new JTextField();
+//        JButton print = new JButton("Print ");
+//        panelText.add(message);
+//        panelText.add(messageTF);
+//        panelText.add(phoneNumber);
+//        panelText.add(phoneNumberTF);
+//        panelText.add(print);
+//        panelText.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Inserting content"),
+//                BorderFactory.createEmptyBorder(10, 5, 2, 5)));
+////        panelText.setVisible(resultLogin);
+//        print.addActionListener(new ActionListener() {
+//
+//            public void actionPerformed(ActionEvent e) {
+//                if (resultLogin) {
+//                    //print.setText("Print");
+//                    System.out.println("message : " + messageTF.getText());
+//                    do {
+//                        System.out.println("phoneNumber : " + phoneNumberTF.getText());
+//                        if (!validPhone(phoneNumberTF.getText())) {
+//                            JOptionPane.showMessageDialog(null, "The number you entered is incorrect ", "Wrong Phone",
+//                                    JOptionPane.INFORMATION_MESSAGE);
+//                        }
+//                    } while (!validPhone(phoneNumberTF.getText()));
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Need to log in ", "Wrong ",
+//                            JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            }
+//        });
+//
+//        return panelText;
+//    }
 
     public boolean validPhone(String phoneNum) {
         boolean result = false;

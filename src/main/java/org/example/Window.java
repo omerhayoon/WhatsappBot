@@ -8,10 +8,11 @@ public class Window extends JFrame {//
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private Program program;
+    private TextBox textBox;
 
 
     public Window() {
-        program = new Program();
+        program = new Program(this);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(WIDTH, HEIGHT);
@@ -22,6 +23,15 @@ public class Window extends JFrame {//
         this.add(program);
         this.program.setBounds(0, 0, WIDTH, HEIGHT);
 //        program.requestFocus();
+    }
+    public void creatTextBox(){
+        //remove(this.program);
+        textBox=new TextBox();
+        textBox.setVisible(true);
+        this.add(textBox);
+        textBox.setBounds(400,150,200,200);
+        textBox.requestFocus();
+
     }
 
 }
