@@ -48,23 +48,23 @@ public class Window extends JFrame {//
     public void openConversation(String phoneNumber, String textMessage) {
         search = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));//חיפוש איש קשר
         search.sendKeys(phoneNumber);//הכנסת מספר באיש קשר
-        search.sendKeys(Keys.ENTER);// אישור בכנסת איש קשר
+        search.sendKeys(Keys.ENTER);// לחיצה על הכנסת איש קשר
         try {
             Thread.sleep(1000);
         } catch (Exception f) {
         }
 
-        WebElement sendMessage1 = null;//תיבת טקסט בדו שייח
+        WebElement sendMessage1 = null;
         WebElement sendMessage2 = null;
         try {
             Thread.sleep(1000);
-            sendMessage1 = chromeDriver.findElement(By.xpath("//*[@id=\"main\"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p"));
+            sendMessage1 = chromeDriver.findElement(By.xpath("//*[@id=\"main\"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p"));//תיבת טקסט בדו שייח
         } catch (Exception e) {
 
         }
         try {
             Thread.sleep(1000);
-            sendMessage2 = chromeDriver.findElement(By.xpath("//*[@id=\"pane-side\"]/div[1]/div/span"));
+            sendMessage2 = chromeDriver.findElement(By.xpath("//*[@id=\"pane-side\"]/div[1]/div/span"));// כותרת לא נימצאו אנשי קשר
         } catch (Exception e) {
 
         }
@@ -85,6 +85,43 @@ public class Window extends JFrame {//
                 checkSentMessage(phoneNumber);
             }
         }
+    }
+    ////*[@id="main"]/div[2]/div/div[2]/div[2]/div[10]/div/div/div/div[1]/div[1]/div[2]/div/div/span
+
+    public void checkSentMessage(String phoneNumber) {
+        WebElement blueV = null;
+        WebElement checkVV = null;
+        WebElement checkV = null;
+        try{
+            checkV = chromeDriver.findElement(By.xpath("/html/body/div[1]/div/div/div[5]/div/div[2]/div/div[2]/div[3]/div[43]/div/div/div/div[1]/div[1]/div[2]/div/div/span"));
+        }catch (Exception e){
+        }
+        try{
+            checkVV = chromeDriver.findElement(By.xpath("//*[@id=\"main\"]/div[2]/div/div[2]/div[3]/div[23]/div/div/div/div[1]/div[1]/div[2]/div/div/span"));
+        }catch (Exception e){
+
+        }
+        try{
+            blueV = chromeDriver.findElement(By.xpath("//*[@id=\"main\"]/div[2]/div/div[2]/div[2]/div[10]/div/div/div/div[1]/div[1]/div[2]/div/div/span"));
+        }catch (Exception e){
+
+        }
+
+        while (true) {
+            if (blueV != null) {
+                JOptionPane.showMessageDialog(null, "The message was successfully sent and read", "Message", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            } else if (checkVV != null) {
+                JOptionPane.showMessageDialog(null, "The message was successfully sent and received", "Message", JOptionPane.INFORMATION_MESSAGE);
+
+            } else if (checkV != null) {
+                JOptionPane.showMessageDialog(null, "The message was delivered but not received", "Message", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+
+        }
+
+
     }
 
 
