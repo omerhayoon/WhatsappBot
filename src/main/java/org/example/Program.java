@@ -23,7 +23,6 @@ public class Program extends JPanel {
     private Image background;
     private JButton loginButton;
     private JLabel success;
-//    private ChromeDriver chromeDriver;
     private Window window;
 
     public Program(Window window) {
