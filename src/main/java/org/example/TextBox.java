@@ -68,7 +68,7 @@ public class TextBox extends JPanel {
                     System.out.println("message : " + textArea.getText());
                     this.phoneNumber = phoneNumberTF.getText();
                     this.textMessage = textArea.getText();
-                    this.window.openConversation(this.phoneNumber,this.textMessage);
+                    this.window.openConversation(this.phoneNumber, this.textMessage);
 
 
                 } else {
