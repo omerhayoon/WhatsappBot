@@ -40,7 +40,7 @@ public class Window extends JFrame {//
     public void createTextBox() {
         this.textBox = new TextBox(this);
         this.add(textBox);
-        this.textBox.setBounds(520, 200, 200, 300);
+        this.textBox.setBounds(535, 160, 200, 300);
         this.textBox.setVisible(true);
         this.textBox.requestFocus();
     }
