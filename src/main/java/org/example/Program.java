@@ -3,6 +3,9 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver.Options;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -73,6 +76,9 @@ public class Program extends JPanel {
     public void openChrome() {
         System.setProperty("webdriver.openqa.driver",
                 "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
+//        ChromeOptions options=new ChromeOptions();
+//        options.addArguments("user-data-dir=C:\\Users\\aviha\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+//        chromeDriver = new ChromeDriver(options);// יתירת משתנה כרום
         chromeDriver = new ChromeDriver();// יתירת משתנה כרום
         chromeDriver.get("https://web.whatsapp.com/");// פותח קישור
         chromeDriver.manage().window().maximize();// לפתוח בחלון מלא

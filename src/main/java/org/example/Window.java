@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Window extends JFrame {//
     private static final int WIDTH = 800;
@@ -19,7 +20,7 @@ public class Window extends JFrame {//
         this.setTitle("WhatsappBOT");
         createProgram();
         createTextBox();
-
+        
     }
 
     public void createProgram(){
