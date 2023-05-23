@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Arrays;
 
 public class Window extends JFrame {//
     private static final int WIDTH = 800;
@@ -75,10 +73,17 @@ public class Window extends JFrame {//
             WebElement temp = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/span/button/span"));// כפתור איקס למחיקת מספר
             temp.click();
         } else {
-            assert sendMessage1 != null;
-            sendMessage1.sendKeys(textMessage);
-            sendMessage1.sendKeys(Keys.ENTER);
-            JOptionPane.showMessageDialog(null, "Message was sent Successfully", "Message", JOptionPane.INFORMATION_MESSAGE);
+            if (sendMessage1 != null) {
+                sendMessage1.sendKeys(textMessage);// הכנסת המידע בדו שיח בתיבת טקסט
+                sendMessage1.sendKeys(Keys.ENTER);
+//            JOptionPane.showMessageDialog(null, "Message was sent Successfully", "Message", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                checkSentMessage(phoneNumber);
+            }
         }
     }
 
