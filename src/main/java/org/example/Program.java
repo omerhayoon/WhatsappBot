@@ -48,6 +48,13 @@ public class Program extends JPanel {
         by.setVisible(true);
         by.setForeground(Color.BLACK);
         this.add(by);
+        success = new JLabel();
+        success.setText("");
+        success.setForeground(Color.GREEN);
+        success.setBounds(555, 50, 800, 40);
+        success.setFont(new Font("Arial", Font.BOLD, 14));
+        success.setVisible(true);
+        this.add(success);
     }
 
     public void loginProcess() {
