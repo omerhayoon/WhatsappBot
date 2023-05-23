@@ -31,7 +31,7 @@ public class Program extends JPanel {
         if(panelText!=null)
         this.panelText.setVisible(false);
         this.log = new JButton("Log on WhatApp");
-        this.log.setBounds(0,0,200,50);
+        this.log.setBounds(530,100,175,50);
         this.log.setVisible(true);
         this.add(log);
         loginProcess();
@@ -39,6 +39,7 @@ public class Program extends JPanel {
         if(sucsess!=null){
             this.panelText.setVisible(true);
             this.panelText.setBounds(0,150,250,250);
+            this.panelText.requestFocus();
         }
         repaint();
 
@@ -68,11 +69,10 @@ public class Program extends JPanel {
     }
 
     public void addSuccessLogin() {
-        System.out.println("addSuccessLogin method is stating");
         sucsess = new JLabel();
         sucsess.setText("Login Successed!");
         sucsess.setForeground(Color.GREEN);
-        sucsess.setBounds(3, 170, 800, 40);
+        sucsess.setBounds(555, 150, 800, 40);
         sucsess.setFont(new Font("Arial", Font.BOLD, 14));
         sucsess.setVisible(true);
         this.add(sucsess);

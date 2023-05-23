@@ -22,14 +22,12 @@ public class Window extends JFrame {//
         this.setTitle("WhatsappBOT");
         this.add(program);
         this.program.setBounds(0, 0, WIDTH, HEIGHT);
-//        program.requestFocus();
     }
     public void creatTextBox(){
-        //remove(this.program);
         textBox=new TextBox();
         textBox.setVisible(true);
         this.add(textBox);
-        textBox.setBounds(400,150,200,200);
+        textBox.setBounds(520,200,200,300);
         textBox.requestFocus();
 
     }
