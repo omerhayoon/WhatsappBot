@@ -26,15 +26,16 @@ public class Window extends JFrame {//
         createProgram();
     }
 
-    public void createProgram(){
+    public void createProgram() {
         program = new Program(this);
         this.add(program);
         program.setBounds(0, 0, WIDTH, HEIGHT);
         program.setVisible(true);
 
     }
-    public void createTextBox(){
-        textBox=new TextBox();
+
+    public void createTextBox() {
+        this.textBox = new TextBox(this);
         this.add(textBox);
         this.textBox.setBounds(520, 200, 200, 300);
         this.textBox.setVisible(true);

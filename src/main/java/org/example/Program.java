@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver.Options;
@@ -54,14 +55,12 @@ public class Program extends JPanel {
         this.loginButton.setBounds(530, 100, 175, 50);
         this.loginButton.setVisible(true);
         this.add(loginButton);
-        this.loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openChrome();
-                addSuccessLogin();
-            }
+        this.loginButton.addActionListener(e -> {
+            window.openChrome(null, null);
+            addSuccessLogin();
         });
     }
+
     public void addSuccessLogin() {
         success.setText("Login Succeed!");
         this.window.createTextBox();
