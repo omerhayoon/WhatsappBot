@@ -1,10 +1,8 @@
 package org.example;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Window extends JFrame {//
-
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private Program program;
@@ -12,7 +10,6 @@ public class Window extends JFrame {//
 
 
     public Window() {
-        program = new Program(this);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(WIDTH, HEIGHT);
@@ -20,14 +17,23 @@ public class Window extends JFrame {//
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setTitle("WhatsappBOT");
-        this.add(program);
-        this.program.setBounds(0, 0, WIDTH, HEIGHT);
+        createProgram();
+        createTextBox();
+
     }
-    public void creatTextBox(){
+
+    public void createProgram(){
+        program = new Program(this);
+        this.add(program);
+        program.setBounds(0, 0, WIDTH, HEIGHT);
+        program.setVisible(true);
+
+    }
+    public void createTextBox(){
         textBox=new TextBox();
-        textBox.setVisible(true);
         this.add(textBox);
         textBox.setBounds(520,200,200,300);
+        textBox.setVisible(true);
         textBox.requestFocus();
 
     }

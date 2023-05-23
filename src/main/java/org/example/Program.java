@@ -15,45 +15,23 @@ import java.util.Objects;
 public class Program extends JPanel {
 
     private Image background;
-    private JPanel panelText;
-    private JPanel panelLogin;
-    private JButton log;
-    private boolean resultLogin;
-    private JLabel sucsess;
+    private JButton loginButton;
+    private JLabel success;
     private ChromeDriver chromeDriver;
     private Window window;
 
     public Program(Window window) {
-        addBackgroundPicture();
-        addByLine();
         this.window = window;
         this.setLayout(null);
-        if (panelText != null) {
-            this.panelText.setVisible(false);
-        }
-        this.log = new JButton("Log on WhatApp");
-        this.log.setBounds(530, 100, 175, 50);
-        this.log.setVisible(true);
-        this.add(log);
+        //addBackgroundPicture();
+        addByLine();
         loginProcess();
-//        this.add(loginProcess());
-        if (sucsess != null) {
-            this.panelText.setVisible(true);
-            this.panelText.setBounds(0, 150, 250, 250);
-            this.panelText.requestFocus();
-        }
         repaint();
-
-        //this.add(addText());
-        // this.panelText.setVisible(resultLogin);
-        // this.panelText.requestFocus();
-        // if(resultLogin) {
-        //  loginProcess().setVisible(false);
     }
 
     public void addBackgroundPicture() {
         try {
-            background = ImageIO.read(Objects.requireNonNull(getClass().getResource("wahtsapp2.jpg")));
+            background = ImageIO.read(Objects.requireNonNull(getClass().getResource("unnamed.jpg")));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -68,27 +46,12 @@ public class Program extends JPanel {
         this.add(by);
     }
 
-    public void addSuccessLogin() {
-        sucsess = new JLabel();
-        sucsess.setText("Login Successed!");
-        sucsess.setForeground(Color.GREEN);
-        sucsess.setBounds(555, 150, 800, 40);
-        sucsess.setFont(new Font("Arial", Font.BOLD, 14));
-        sucsess.setVisible(true);
-        this.add(sucsess);
-        this.window.creatTextBox();
-
-        repaint();
-    }
-
     public void loginProcess() {
-//        panelLogin = new JPanel();
-        //panelLogin.setLayout(new GridLayout(1, 1, 10, 10));
-//        this.log = new JButton("Log on WhatApp");
-//        this.log.setBounds(0,0,100,50);
-////        log.add(log);
-//        this.log.setVisible(true);
-        this.log.addActionListener(new ActionListener() {
+        this.loginButton = new JButton("Log on WhatApp");
+        this.loginButton.setBounds(530, 100, 175, 50);
+        this.loginButton.setVisible(true);
+        this.add(loginButton);
+        this.loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openChrome();
@@ -96,73 +59,24 @@ public class Program extends JPanel {
             }
         });
     }
-
-//    public JPanel addText() {
-//
-//        panelText = new JPanel();
-//        panelText.setLayout(new GridLayout(3, 2, 10, 10));
-//        //panelText.setBounds(20, 50, 200, 200);
-//        JLabel message = new JLabel("Message: ");
-//        JTextField messageTF = new JTextField();
-//        JLabel phoneNumber = new JLabel("Phone Number: ");
-//        JTextField phoneNumberTF = new JTextField();
-//        JButton print = new JButton("Print ");
-//        panelText.add(message);
-//        panelText.add(messageTF);
-//        panelText.add(phoneNumber);
-//        panelText.add(phoneNumberTF);
-//        panelText.add(print);
-//        panelText.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Inserting content"),
-//                BorderFactory.createEmptyBorder(10, 5, 2, 5)));
-////        panelText.setVisible(resultLogin);
-//        print.addActionListener(new ActionListener() {
-//
-//            public void actionPerformed(ActionEvent e) {
-//                if (resultLogin) {
-//                    //print.setText("Print");
-//                    System.out.println("message : " + messageTF.getText());
-//                    do {
-//                        System.out.println("phoneNumber : " + phoneNumberTF.getText());
-//                        if (!validPhone(phoneNumberTF.getText())) {
-//                            JOptionPane.showMessageDialog(null, "The number you entered is incorrect ", "Wrong Phone",
-//                                    JOptionPane.INFORMATION_MESSAGE);
-//                        }
-//                    } while (!validPhone(phoneNumberTF.getText()));
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Need to log in ", "Wrong ",
-//                            JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            }
-//        });
-//
-//        return panelText;
-//    }
-
-    public boolean validPhone(String phoneNum) {
-        boolean result = false;
-
-        if (phoneNum.startsWith("050") && (phoneNum.length() == 10)) {
-            phoneNum = "050-" + phoneNum.substring(phoneNum.length() - 7);
-        }
-        if (phoneNum.startsWith("97250") && (phoneNum.length() == 12)) {
-            phoneNum = "050-" + phoneNum.substring(phoneNum.length() - 7);
-        }
-        if (phoneNum.startsWith("050-") && (phoneNum.length() == 11)) {
-            phoneNum = "050-" + phoneNum.substring(phoneNum.length() - 7);
-        } else {
-            phoneNum = "False number, please reenter a new number";
-        }
-        return result;
+    public void addSuccessLogin() {
+        success = new JLabel();
+        success.setText("Login Successed!");
+        success.setForeground(Color.GREEN);
+        success.setBounds(555, 150, 800, 40);
+        success.setFont(new Font("Arial", Font.BOLD, 14));
+        success.setVisible(true);
+        this.add(success);
+        this.window.createTextBox();
+        repaint();
     }
-
     public void openChrome() {
         System.setProperty("webdriver.openqa.driver",
                 "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
         chromeDriver = new ChromeDriver();// יתירת משתנה כרום
         chromeDriver.get("https://web.whatsapp.com/");// פותח קישור
         chromeDriver.manage().window().maximize();// לפתוח בחלון מלא
-        WebElement searchBox = null;
+        WebElement searchBox;
         while (true) {
             try {
                 searchBox = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));
