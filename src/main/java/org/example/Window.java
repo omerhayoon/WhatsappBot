@@ -1,5 +1,10 @@
 package org.example;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,10 +36,9 @@ public class Window extends JFrame {//
     public void createTextBox(){
         textBox=new TextBox();
         this.add(textBox);
-        textBox.setBounds(520,200,200,300);
-        textBox.setVisible(true);
-        textBox.requestFocus();
-
+        this.textBox.setBounds(520, 200, 200, 300);
+        this.textBox.setVisible(true);
+        this.textBox.requestFocus();
     }
 
 }

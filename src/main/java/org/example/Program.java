@@ -20,7 +20,7 @@ public class Program extends JPanel {
     private Image background;
     private JButton loginButton;
     private JLabel success;
-    private ChromeDriver chromeDriver;
+//    private ChromeDriver chromeDriver;
     private Window window;
 
     public Program(Window window) {
@@ -63,36 +63,38 @@ public class Program extends JPanel {
         });
     }
     public void addSuccessLogin() {
-        success = new JLabel();
-        success.setText("Login Successed!");
-        success.setForeground(Color.GREEN);
-        success.setBounds(555, 150, 800, 40);
-        success.setFont(new Font("Arial", Font.BOLD, 14));
-        success.setVisible(true);
-        this.add(success);
+        success.setText("Login Succeed!");
         this.window.createTextBox();
-        repaint();
+
+
     }
-    public void openChrome() {
-        System.setProperty("webdriver.openqa.driver",
-                "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
-//        ChromeOptions options=new ChromeOptions();
-//        options.addArguments("user-data-dir=C:\\Users\\aviha\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
-//        chromeDriver = new ChromeDriver(options);// יתירת משתנה כרום
-        chromeDriver = new ChromeDriver();// יתירת משתנה כרום
-        chromeDriver.get("https://web.whatsapp.com/");// פותח קישור
-        chromeDriver.manage().window().maximize();// לפתוח בחלון מלא
-        WebElement searchBox;
-        while (true) {
-            try {
-                searchBox = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));
-                if (searchBox != null) {
-                    break;
-                }
-            } catch (Exception e) {
-            }
-        }
-    }
+
+//    public void openChrome(String phoneNumber, String textMessage) {
+//        System.setProperty("webdriver.openqa.driver",
+//                "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
+////        ChromeOptions options=new ChromeOptions();
+////        options.addArguments("user-data-dir=C:\\Users\\aviha\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+////        chromeDriver = new ChromeDriver(options);// יתירת משתנה כרום
+//        chromeDriver = new ChromeDriver();// יתירת משתנה כרום
+//        chromeDriver.get("https://web.whatsapp.com/");// פותח קישור
+//        chromeDriver.manage().window().maximize();// לפתוח בחלון מלא
+//        WebElement searchBox;
+//        while (true) {
+//            try {
+//                searchBox = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));
+//                if (searchBox != null) {
+//                    break;
+//                }
+//            } catch (Exception e) {
+//            }
+//        }
+////        chromeDriver.get("https://api.whatsapp.com/send?phone=" + window.resultTextBox()[0]);
+////        WebElement sendMessage = chromeDriver.findElement(By.xpath("//*[@id=\"main\"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p"));
+////        sendMessage.sendKeys(window.resultTextBox()[1]);
+////        sendMessage.sendKeys(Keys.ENTER);
+////        System.out.println("Message was sent Successfully");
+//
+//    }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
