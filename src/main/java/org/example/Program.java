@@ -24,26 +24,26 @@ public class Program extends JPanel {
     private Window window;
 
     public Program(Window window) {
-        // addByLine();
-        this.window=window;
+        addBackgroundPicture();
+        addByLine();
+        this.window = window;
         this.setLayout(null);
-        //this.add(addText());
-        if(panelText!=null)
-        this.panelText.setVisible(false);
+        if (panelText != null) {
+            this.panelText.setVisible(false);
+        }
         this.log = new JButton("Log on WhatApp");
-        this.log.setBounds(530,100,175,50);
+        this.log.setBounds(530, 100, 175, 50);
         this.log.setVisible(true);
         this.add(log);
         loginProcess();
 //        this.add(loginProcess());
-        if(sucsess!=null){
+        if (sucsess != null) {
             this.panelText.setVisible(true);
-            this.panelText.setBounds(0,150,250,250);
+            this.panelText.setBounds(0, 150, 250, 250);
             this.panelText.requestFocus();
         }
         repaint();
 
-        //addBackgroundPicture();
         //this.add(addText());
         // this.panelText.setVisible(resultLogin);
         // this.panelText.requestFocus();
@@ -60,8 +60,8 @@ public class Program extends JPanel {
     }
 
     public void addByLine() {
-        JLabel by = new JLabel("@By Avihay Navon, David Even-Haim, Omer Hayoon, Avihay Ben-Ami, AAC-CS 2023");
-        by.setBounds(3, 470, 800, 40);
+        JLabel by = new JLabel("@By Avihay Navon, David Even-Haim, Omer Hayoon, Avihay Ben-Ami,Idan Zakheym AAC-CS 2023");
+        by.setBounds(3, 530, 800, 40);
         by.setFont(new Font("Arial", Font.BOLD, 14));
         by.setVisible(true);
         by.setForeground(Color.BLACK);
