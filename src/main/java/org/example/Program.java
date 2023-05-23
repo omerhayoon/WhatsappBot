@@ -1,22 +1,13 @@
 package org.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.WebDriver.Options;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Program extends JPanel {
 
@@ -64,7 +55,7 @@ public class Program extends JPanel {
         this.loginButton.setVisible(true);
         this.add(loginButton);
         this.loginButton.addActionListener(e -> {
-            window.openChrome(null, null);
+            window.openChrome();
             addSuccessLogin();
         });
     }

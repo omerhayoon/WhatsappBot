@@ -12,8 +12,6 @@ public class Window extends JFrame {//
     private static final int HEIGHT = 600;
     private Program program;
     private TextBox textBox;
-    private String phoneNumber;
-    private String text;
     private ChromeDriver chromeDriver;
     private WebElement search = null;
 
@@ -82,13 +80,13 @@ public class Window extends JFrame {//
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                checkSentMessage(phoneNumber);
+                checkSentMessage();
             }
         }
     }
     ////*[@id="main"]/div[2]/div/div[2]/div[2]/div[10]/div/div/div/div[1]/div[1]/div[2]/div/div/span
 
-    public void checkSentMessage(String phoneNumber) {
+    public void checkSentMessage() {
         WebElement blueV = null;
         WebElement checkVV = null;
         WebElement checkV = null;
@@ -125,7 +123,7 @@ public class Window extends JFrame {//
     }
 
 
-    public void openChrome(String phoneNumber, String textMessage) {
+    public void openChrome() {
         System.setProperty("webdriver.openqa.driver",
                 "C:\\Users\\עומר\\Downloads\\chromedriver_win32");// נתב לגישה למחלקת כרום
 //        ChromeOptions options=new ChromeOptions();
