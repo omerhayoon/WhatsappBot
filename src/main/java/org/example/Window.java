@@ -19,8 +19,6 @@ public class Window extends JFrame {//
         this.setLocationRelativeTo(null);
         this.setTitle("WhatsappBOT");
         createProgram();
-        createTextBox();
-        
     }
 
     public void createProgram(){
