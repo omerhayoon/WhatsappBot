@@ -19,9 +19,43 @@ public class TextBox extends JPanel {
         this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Phone number and message"),
                 BorderFactory.createEmptyBorder(10, 5, 2, 5)));
         JLabel message = new JLabel("Message: ");
-        JTextField messageTF = new JTextField();
-        JLabel phoneNumber = new JLabel("Phone Number: ");
+        message.setBounds(20, 20, 120, 15);
+        message.setFont(new Font("Enter Phone Number", Font.BOLD, 12));
+        this.add(message);
+
+        JTextArea textArea = new JTextArea();
+        textArea.setBounds(20, 50, 150, 100);
+        this.add(textArea);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+
+        JLabel phoneNumberLable = new JLabel("Phone Number: ");
+        phoneNumberLable.setBounds(20, 165, 120, 15);
+        this.add(phoneNumberLable);
+
         JTextField phoneNumberTF = new JTextField();
+        phoneNumberTF.setBounds(20, 190, 150, 20);
+        this.add(phoneNumberTF);
+
+        phoneNumberTF.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                try {
+                    long value = Long.parseLong(phoneNumberTF.getText());
+                    if (phoneNumberTF.getText().startsWith("05") && phoneNumberTF.getText().length() == 10) {
+                        String temp = "9725" + phoneNumberTF.getText().substring(2);
+                        phoneNumberTF.setText(temp);
+                    } else if (phoneNumberTF.getText().startsWith("05") && phoneNumberTF.getText().charAt(3) == '-' && phoneNumberTF.getText().length() == 11) {
+                        String temp = "9725" + phoneNumberTF.getText().charAt(2) + phoneNumberTF.getText().substring(4);
+                        phoneNumberTF.setText(temp);
+                    }else{
+                        phoneNumberTF.getText();
+                    }
+                } catch (NumberFormatException exception) {
+                    phoneNumberTF.setText("");
+                }
+            }
+        });
+
         JButton sendMessage = new JButton("Send Message");
         sendMessage.setBounds(40, 240, 120, 30);
         this.add(sendMessage);
