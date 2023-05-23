@@ -14,7 +14,7 @@ public class TextBox extends JPanel {
     private Window window;
 
     public TextBox(Window window) {
-        this.window=window;
+        this.window = window;
         this.setLayout(null);
         this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Phone number and message"),
                 BorderFactory.createEmptyBorder(10, 5, 2, 5)));
@@ -40,20 +40,18 @@ public class TextBox extends JPanel {
         phoneNumberTF.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 try {
+                    String text = phoneNumberTF.getText();
                     long value = Long.parseLong(phoneNumberTF.getText());
                     if (phoneNumberTF.getText().startsWith("05") && phoneNumberTF.getText().length() == 10) {
                         String temp = "9725" + phoneNumberTF.getText().substring(2);
                         phoneNumberTF.setText(temp);
-                    } else if (phoneNumberTF.getText().startsWith("05") && phoneNumberTF.getText().charAt(3) == '-' && phoneNumberTF.getText().length() == 11) {
-                        String temp = "9725" + phoneNumberTF.getText().charAt(2) + phoneNumberTF.getText().substring(4);
-                        phoneNumberTF.setText(temp);
-                    }else{
-                        phoneNumberTF.getText();
                     }
-                } catch (NumberFormatException exception) {
+                }catch (NumberFormatException exception) {
                     phoneNumberTF.setText("");
                 }
-            }
+
+                }
+
         });
 
         JButton sendMessage = new JButton("Send Message");
@@ -82,31 +80,32 @@ public class TextBox extends JPanel {
             }
         });
     }
-        public boolean validPhone (String phoneNumber){
-            long length = phoneNumber.length();
-            if (length == 12 && phoneNumber.startsWith("9725")) {
-                return true;
-            }
-            if (length == 11 && phoneNumber.startsWith("05") && phoneNumber.charAt(3) == '-') {
-                return true;
-            }
-            if (length == 10 && phoneNumber.startsWith("05")) {
-                return true;
-            }
-            return false;
+
+    public boolean validPhone(String phoneNumber) {
+        long length = phoneNumber.length();
+        if (length == 12 && phoneNumber.startsWith("9725")) {
+            return true;
         }
+        if (length == 11 && phoneNumber.startsWith("05") && phoneNumber.charAt(3) == '-') {
+            return true;
+        }
+        if (length == 10 && phoneNumber.startsWith("05")) {
+            return true;
+        }
+        return false;
+    }
 
 
-        public String getPhoneNumber () {
-            return phoneNumber;
-        }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-        public String getTextMessage () {
-            return textMessage;
-        }
+    public String getTextMessage() {
+        return textMessage;
+    }
 
-        public void paintComponent (Graphics graphics){
-            super.paintComponent(graphics);
-        }
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+    }
 
 }
