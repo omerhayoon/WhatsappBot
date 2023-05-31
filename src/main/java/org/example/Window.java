@@ -1,11 +1,14 @@
 package org.example;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import javax.swing.*;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Window extends JFrame {//
     private static final int WIDTH = 800;
@@ -14,6 +17,7 @@ public class Window extends JFrame {//
     private TextBox textBox;
     private ChromeDriver chromeDriver;
     private WebElement search = null;
+    private Integer count = 0;
 
 
     public Window() {
@@ -67,40 +71,59 @@ public class Window extends JFrame {//
 
         }
         if (sendMessage2 != null) {
-            JOptionPane.showMessageDialog(null, "this number is not at contacts", "Message", JOptionPane.INFORMATION_MESSAGE);
-            WebElement temp = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/span/button/span"));// כפתור איקס למחיקת מספר
-            temp.click();
-        } else {
-            if (sendMessage1 != null) {
-                sendMessage1.sendKeys(textMessage);// הכנסת המידע בדו שיח בתיבת טקסט
-                sendMessage1.sendKeys(Keys.ENTER);
-                System.out.println("first try");
-                checkSentMessage();
-                System.out.println("second try");
-//            JOptionPane.showMessageDialog(null, "Message was sent Successfully", "Message", JOptionPane.INFORMATION_MESSAGE);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            JOptionPane.showMessageDialog(null, "This number is not in your contacts", "Message", JOptionPane.INFORMATION_MESSAGE);
+            chromeDriver.get("https://web.whatsapp.com/send/?phone=" + phoneNumber);
+            rest(7000);
+
         }
+        WebElement temp = chromeDriver.findElement(By.xpath("//*[@id=\"main\"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p"));
+        temp.sendKeys(textMessage);// הכנסת המידע בדו שיח בתיבת טקסט
+        temp.sendKeys(Keys.ENTER);
+        System.out.println("first try");
+        checkSentMessage();
+        System.out.println("second try");
+//            JOptionPane.showMessageDialog(null, "Message was sent Successfully", "Message", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     public void checkSentMessage() {
-        new Thread(()->{
+        new Thread(() -> {
             WebElement checkV = chromeDriver.findElement(By.cssSelector("span[data-testid='msg-dblcheck']"));
             String status = checkV.getAttribute("aria-label");
-            System.out.println("Good luck");
-            if (status.contains("נקראה")) {
+
+            System.out.println(status);
+            if (status.equals(" נמסרה ")) {
                 JOptionPane.showMessageDialog(null, "The message was successfully sent and read", "Message", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Worked");
             }
         }).start();
 
-
-
     }
+
+//    public WebElement getV() {
+//        String path = "/html/body/div[1]/div/div/div[5]/div/div[2]/div[3]/div[" + Integer.toString(count) + "]/div/div/div/div[1]/div[1]/div[2]/div/div/span";
+//        WebElement webElement = null;
+//        while (true) {
+//            try {
+//                webElement = chromeDriver.findElement(By.xpath(path));
+//                if (webElement == null) {
+//                    break;
+//                } else {
+//                    count++;
+//                    path = "/html/body/div[1]/div/div/div[5]/div/div[2]/div[3]/div[" + Integer.toString(count) + "]/div/div/div/div[1]/div[1]/div[2]/div/div/span";
+//                }
+//            } catch (NoSuchElementException e) {
+//                break;
+//            }
+//        }return webElement;
+//    }
+
     ////*[@id="main"]/div[2]/div/div[2]/div[2]/div[10]/div/div/div/div[1]/div[1]/div[2]/div/div/span
 //
 //    public void checkSentMessage() {
@@ -167,6 +190,14 @@ public class Window extends JFrame {//
                 }
             } catch (Exception e) {
             }
+        }
+    }
+
+    public void rest(int number) {
+        try {
+            Thread.sleep(number);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
