@@ -47,6 +47,7 @@ public class Program extends JPanel {
         success.setFont(new Font("Arial", Font.BOLD, 14));
         success.setVisible(true);
         this.add(success);
+
     }
 
     public void loginProcess() {
@@ -61,6 +62,10 @@ public class Program extends JPanel {
     }
     public void addSuccessLogin() {
         success.setText("Login Succeed!");
+        this.window.createTextBox();
+    }
+    public void messageStatus(String status){
+        success.setText(status);
         this.window.createTextBox();
     }
     public void paintComponent(Graphics graphics) {

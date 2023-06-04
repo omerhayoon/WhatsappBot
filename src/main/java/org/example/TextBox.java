@@ -94,13 +94,6 @@ public class TextBox extends JPanel {
     }
 
 
-//    public String getPhoneNumber() {
-//        return phoneNumber;
-//    }
-//
-//    public String getTextMessage() {
-//        return textMessage;
-//    }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
