@@ -21,7 +21,7 @@ public class Window extends JFrame {//
     private boolean isSent;
     private WebElement lastMessage;
     private boolean isRead;
-    private JLabel status;
+    //private JLabel status;
 
 
 
@@ -53,7 +53,7 @@ public class Window extends JFrame {//
     }
 
     public void openConversation(String phoneNumber, String textMessage) {
-        setMessageStatus("1234");
+        //setMessageStatus("1234");
         search = chromeDriver.findElement(By.xpath("//*[@id=\"side\"]/div[1]/div/div/div[2]/div/div[1]/p"));//חיפוש איש קשר
         search.sendKeys(phoneNumber);//הכנסת מספר באיש קשר
         search.sendKeys(Keys.ENTER);// לחיצה על הכנסת איש קשר
@@ -115,7 +115,6 @@ public class Window extends JFrame {//
     }
 
 
-    //
     public String getLast(ChromeDriver chromeDriver) {
         String lastMessage = null;
         List<WebElement> list = null;
@@ -132,30 +131,29 @@ public class Window extends JFrame {//
     }
 
     public void deliveredMessage(ChromeDriver chromeDriver) {
-        boolean delievered = false;
         boolean read = false;
         boolean sent = false;
         while (!read) {
             List<WebElement> list = chromeDriver.findElements(By.cssSelector("span[data-icon='msg-dblcheck']"));
-            System.out.println(list.get(list.size() - 1).getAccessibleName());
             try {
                 String lastMessage = getLast(chromeDriver);
-                if (lastMessage.contains("נשלחה") && !sent && !delievered) {
-                    this.status.setText("Successfully Sent!");
+                if(lastMessage == null){
+                    System.out.println("נשלחה");
+                }else{
+                    if (lastMessage.contains("נמסרה") && !sent) {
+                        System.out.println(lastMessage + "נמסרה");
+                        //this.status.setText("Successfully Delivered!");
+                        System.out.println(("נמסרה"));
+                        sent = true;
+                    }else if (lastMessage.contains("נקראה")) {
+                        //this.status.setText("Successfully Read!");
+                        System.out.println("נקראה");
+                        read = true;
+                    }
+                }
 
-                    delievered = true;
-                }
-                if (lastMessage.contains("נמסרה") && !sent) {
-                    System.out.println(lastMessage + "נמסרה");
-                    this.status.setText("Successfully Delivered!");
-                    sent = true;
-                }
-                if (lastMessage.contains("נקראה")) {
-                    this.status.setText("Successfully Read!");
-                    read = true;
-                }
             } catch (Exception e) {
-                System.out.println(e);
+//                System.out.println(e);
             }
         }
 
@@ -172,14 +170,14 @@ public class Window extends JFrame {//
     public void popMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE);
     }
-    public void setMessageStatus(String status){
-        this.status = new JLabel();
-        this.status.setText("");
-        this.status.setForeground(Color.BLACK);
-        this.status.setBounds(400, 300, 800, 40);
-        this.status.setFont(new Font("Arial", Font.BOLD, 14));
-        this.status.setVisible(true);
-        this.add(this.status);
-    }
+//    public void setMessageStatus(String status){
+//        this.status = new JLabel();
+//        this.status.setText("");
+//        this.status.setForeground(Color.BLACK);
+//        this.status.setBounds(400, 300, 800, 40);
+//        this.status.setFont(new Font("Arial", Font.BOLD, 14));
+//        this.status.setVisible(true);
+//        this.add(this.status);
+//    }
 
 }
